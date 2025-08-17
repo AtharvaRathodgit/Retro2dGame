@@ -38,7 +38,7 @@ html, body{
 
     transform: translate(0px, 0px);
 
-    transition: 100ms;
+    /* transition: 100ms; */
 }
 
 .cherry{

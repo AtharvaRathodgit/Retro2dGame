@@ -4,7 +4,7 @@ const Cherry = document.querySelector(".cherry");
 const ScoreNumber = document.querySelector("#scoreNumber");
 
 const keys = {}
-let playSpeed = 50.0;
+let playSpeed = 5.0;
 
 let Score = 0;
 
@@ -29,7 +29,7 @@ setCherry();
 function gameLoop() {
     let {x, y} = getPosition(Player);
 
-    playSpeed += Score * 0.0001;
+    playSpeed += Score * 0.0005;
 
     if(keys["ArrowUp"] || keys["w"])        y -= playSpeed;
     if(keys["ArrowDown"] || keys["s"])      y += playSpeed;
