@@ -2,6 +2,7 @@ const Player = document.querySelector(".player");
 const Cherry = document.querySelector(".cherry");
 
 const ScoreNumber = document.querySelector("#scoreNumber");
+const ScoreBoard = document.querySelector(".scoreBoard");
 
 const keys = {}
 let playSpeed = 5.0;
@@ -29,17 +30,18 @@ setCherry();
 function gameLoop() {
     let {x, y} = getPosition(Player);
 
-    playSpeed += Score * 0.0005;
+    if(playSpeed <= 50)
+    playSpeed += Score * 0.00005;
 
     if(keys["ArrowUp"] || keys["w"])        y -= playSpeed;
     if(keys["ArrowDown"] || keys["s"])      y += playSpeed;
     if(keys["ArrowLeft"] || keys["a"])      x -= playSpeed;
     if(keys["ArrowRight"] || keys["d"])     x += playSpeed;
 
-    if(y > screenHeight / 2) y = screenHeight / 2;
-    if(y < -1 * screenHeight / 2) y = -1 * screenHeight / 2;
-    if(x > screenWidth / 2) x = screenWidth / 2;
-    if(x < -1 * screenWidth / 2) x = -1 * screenWidth / 2;
+    if(y > screenHeight / 2)        y = screenHeight / 2;
+    if(y < -1 * screenHeight / 2)   y = -1 * screenHeight / 2;
+    if(x > screenWidth / 2)         x = screenWidth / 2;
+    if(x < -1 * screenWidth / 2)    x = -1 * screenWidth / 2;
 
     Player.style.transform = `translate(${x}px, ${y}px)`;
 
@@ -50,7 +52,7 @@ function gameLoop() {
         Score++;
         setCherry();
 
-        while (Math.abs(CherryPositionX - x) < 45 && Math.abs(CherryPositionY - y) < 45) {
+        while (Math.abs(CherryPositionX - x) < 70 && Math.abs(CherryPositionY - y) < 70) {
             setCherry();
         }
 
@@ -75,7 +77,6 @@ requestAnimationFrame(gameLoop);
 
 
 
-
 // UTILE FUNCTIONS :
 
 function getPosition(element) {
@@ -91,4 +92,9 @@ function setCherry(){
     globalThis.CherryPositionY = Math.floor(Math.random() * (screenHeight + 1) - screenHeight / 2);
 
     Cherry.style.transform = `translate(${CherryPositionX}px, ${CherryPositionY}px)`;
+
+    let {x : SBPositionX, y : SBPositionY} = getPosition(ScoreBoard);
+    if(Math.abs(CherryPositionX - SBPositionX) < 40 && Math.abs(CherryPositionY - SBPositionY) < 125){
+        ScoreBoard.style.opacity = 0.5;
+    }
 }
