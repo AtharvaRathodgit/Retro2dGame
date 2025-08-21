@@ -1,5 +1,7 @@
 const Player = document.querySelector(".player");
-const Cherry = document.querySelector(".cherry");
+const Cherry1 = document.getElementsByClassName("cherry")[0];
+const Cherry2 = document.getElementsByClassName("cherry")[1];
+const Cherry3 = document.getElementsByClassName("cherry")[2];
 
 const ScoreNumber = document.querySelector("#scoreNumber");
 const ScoreBoard = document.querySelector(".scoreBoard");
@@ -22,7 +24,9 @@ let screenWidth = window.innerWidth;
 
 // GAME SETUP FUNCITONS CALLS :
 
-setCherry();
+setCherry1();
+setCherry2();
+setCherry3();
 
 
 // MAIN GAME LOOP :
@@ -30,8 +34,8 @@ setCherry();
 function gameLoop() {
     let {x, y} = getPosition(Player);
 
-    if(playSpeed <= 50)
-    playSpeed += Score * 0.00005;
+    if(playSpeed <= 30)
+        playSpeed += Score * 0.00005;
 
     if(keys["ArrowUp"] || keys["w"])        y -= playSpeed;
     if(keys["ArrowDown"] || keys["s"])      y += playSpeed;
@@ -48,12 +52,35 @@ function gameLoop() {
 
 
     // When player Collide with the Cherry
-    if (Math.abs(CherryPositionX - x) < 45 && Math.abs(CherryPositionY - y) < 45) {
+    // for Cherry 1
+    if (Math.abs(Cherry1PositionX - x) < 65 && Math.abs(Cherry1PositionY - y) < 65) {
         Score++;
-        setCherry();
+        setCherry1();
 
-        while (Math.abs(CherryPositionX - x) < 70 && Math.abs(CherryPositionY - y) < 70) {
-            setCherry();
+        while (Math.abs(Cherry1PositionX - x) < 65 && Math.abs(Cherry1PositionY - y) < 65) {
+            setCherry1();
+        }
+
+        ScoreNumber.textContent = Score;
+    }
+    // for Cherry 2
+    if (Math.abs(Cherry2PositionX - x) < 65 && Math.abs(Cherry2PositionY - y) < 65) {
+        Score++;
+        setCherry2();
+
+        while (Math.abs(Cherry2PositionX - x) < 65 && Math.abs(Cherry2PositionY - y) < 65) {
+            setCherry2();
+        }
+
+        ScoreNumber.textContent = Score;
+    }
+    // for Cherry 3
+    if (Math.abs(Cherry3PositionX - x) < 65 && Math.abs(Cherry3PositionY - y) < 65) {
+        Score++;
+        setCherry3();
+
+        while (Math.abs(Cherry3PositionX - x) < 65 && Math.abs(Cherry3PositionY - y) < 65) {
+            setCherry3();
         }
 
         ScoreNumber.textContent = Score;
@@ -87,14 +114,38 @@ function getPosition(element) {
 }
 
 
-function setCherry(){
-    globalThis.CherryPositionX = Math.floor(Math.random() * (screenWidth + 1) - screenWidth / 2);
-    globalThis.CherryPositionY = Math.floor(Math.random() * (screenHeight + 1) - screenHeight / 2);
+function setCherry1(){
+    globalThis.Cherry1PositionX = Math.floor(Math.random() * (screenWidth + 1) - screenWidth / 2);
+    globalThis.Cherry1PositionY = Math.floor(Math.random() * (screenHeight + 1) - screenHeight / 2);
 
-    Cherry.style.transform = `translate(${CherryPositionX}px, ${CherryPositionY}px)`;
+    Cherry1.style.transform = `translate(${Cherry1PositionX}px, ${Cherry1PositionY}px)`;
 
-    let {x : SBPositionX, y : SBPositionY} = getPosition(ScoreBoard);
-    if(Math.abs(CherryPositionX - SBPositionX) < 40 && Math.abs(CherryPositionY - SBPositionY) < 125){
-        ScoreBoard.style.opacity = 0.5;
-    }
+    // let {x : SBPositionX, y : SBPositionY} = getPosition(ScoreBoard);
+    // if(Math.abs(CherryPositionX - SBPositionX) < 40 && Math.abs(CherryPositionY - SBPositionY) < 125){
+    //     ScoreBoard.style.opacity = 0.5;
+    // }
+}
+
+function setCherry2(){
+    globalThis.Cherry2PositionX = Math.floor(Math.random() * (screenWidth + 1) - screenWidth / 2);
+    globalThis.Cherry2PositionY = Math.floor(Math.random() * (screenHeight + 1) - screenHeight / 2);
+
+    Cherry2.style.transform = `translate(${Cherry2PositionX}px, ${Cherry2PositionY}px)`;
+
+    // let {x : SBPositionX, y : SBPositionY} = getPosition(ScoreBoard);
+    // if(Math.abs(CherryPositionX - SBPositionX) < 40 && Math.abs(CherryPositionY - SBPositionY) < 125){
+    //     ScoreBoard.style.opacity = 0.5;
+    // }
+}
+
+function setCherry3(){
+    globalThis.Cherry3PositionX = Math.floor(Math.random() * (screenWidth + 1) - screenWidth / 2);
+    globalThis.Cherry3PositionY = Math.floor(Math.random() * (screenHeight + 1) - screenHeight / 2);
+
+    Cherry3.style.transform = `translate(${Cherry3PositionX}px, ${Cherry3PositionY}px)`;
+
+    // let {x : SBPositionX, y : SBPositionY} = getPosition(ScoreBoard);
+    // if(Math.abs(CherryPositionX - SBPositionX) < 40 && Math.abs(CherryPositionY - SBPositionY) < 125){
+    //     ScoreBoard.style.opacity = 0.5;
+    // }
 }
