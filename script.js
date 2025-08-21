@@ -34,7 +34,7 @@ setCherry3();
 function gameLoop() {
     let {x, y} = getPosition(Player);
 
-    if(playSpeed <= 30)
+    if(playSpeed <= 20)
         playSpeed += Score * 0.00005;
 
     if(keys["ArrowUp"] || keys["w"])        y -= playSpeed;
@@ -86,6 +86,12 @@ function gameLoop() {
         ScoreNumber.textContent = Score;
     }
 
+
+    // to adjust the ScoreBoard Opacity based on the player position
+    // if(x < -1*(screenWidth / 2) + 250 && y > (screenHeight / 2) - 80){
+    //     ScoreBoard.style.opacity = 0.5;
+    // }
+
     
 
     requestAnimationFrame(gameLoop);   
@@ -120,10 +126,10 @@ function setCherry1(){
 
     Cherry1.style.transform = `translate(${Cherry1PositionX}px, ${Cherry1PositionY}px)`;
 
-    // let {x : SBPositionX, y : SBPositionY} = getPosition(ScoreBoard);
-    // if(Math.abs(CherryPositionX - SBPositionX) < 40 && Math.abs(CherryPositionY - SBPositionY) < 125){
-    //     ScoreBoard.style.opacity = 0.5;
-    // }
+
+    if(Cherry1PositionX < -1*(screenWidth / 2) + 250 && Cherry1PositionY > (screenHeight / 2) - 80){
+        ScoreBoard.style.opacity = 0.5;
+    }
 }
 
 function setCherry2(){
@@ -132,10 +138,10 @@ function setCherry2(){
 
     Cherry2.style.transform = `translate(${Cherry2PositionX}px, ${Cherry2PositionY}px)`;
 
-    // let {x : SBPositionX, y : SBPositionY} = getPosition(ScoreBoard);
-    // if(Math.abs(CherryPositionX - SBPositionX) < 40 && Math.abs(CherryPositionY - SBPositionY) < 125){
-    //     ScoreBoard.style.opacity = 0.5;
-    // }
+
+    if(Cherry2PositionX < -1*(screenWidth / 2) + 250 && Cherry2PositionY > (screenHeight / 2) - 80){
+        ScoreBoard.style.opacity = 0.5;
+    }
 }
 
 function setCherry3(){
@@ -144,8 +150,8 @@ function setCherry3(){
 
     Cherry3.style.transform = `translate(${Cherry3PositionX}px, ${Cherry3PositionY}px)`;
 
-    // let {x : SBPositionX, y : SBPositionY} = getPosition(ScoreBoard);
-    // if(Math.abs(CherryPositionX - SBPositionX) < 40 && Math.abs(CherryPositionY - SBPositionY) < 125){
-    //     ScoreBoard.style.opacity = 0.5;
-    // }
+
+    if(Cherry3PositionX < -1*(screenWidth / 2) + 250 && Cherry3PositionY > (screenHeight / 2) - 80){
+        ScoreBoard.style.opacity = 0.5;
+    }
 }
